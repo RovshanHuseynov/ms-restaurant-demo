@@ -16,6 +16,7 @@ public class Table {
     @Id
     private String id;
     private String name;
+    private String number;
     private int sitCount;
     //private Restaurant restaurant;
 
