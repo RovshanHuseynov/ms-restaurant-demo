@@ -5,6 +5,13 @@ import com.local.ms.restaurant.model.enums.State;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -12,14 +19,26 @@ import java.time.LocalDateTime;
 
 import static jakarta.persistence.EnumType.*;
 
+@Getter
+@Setter
+@EqualsAndHashCode(of = "id")
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-public class Reservation {
+@Table(name = "reservations")
+public class ReservationEntity {
     @Id
     private String id;
 
-    private User user;   // reserved User
-    private Table table;
-    private Restaurant restaurant;
+    @OneToOne
+    private UserEntity user;
+
+    @OneToOne
+    private TableEntity table;
+
+    @OneToOne
+    private RestaurantEntity restaurant;
+
     private LocalDateTime startTime;     // reservation start time
     private LocalDateTime endTime;       // reservation end time
 
