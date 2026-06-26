@@ -1,6 +1,6 @@
 package com.local.ms.restaurant.controller;
 
-import com.local.ms.restaurant.service.RestaurantService;
+import com.local.ms.restaurant.service.abstraction.RestaurantService;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.web.bind.annotation.GetMapping;

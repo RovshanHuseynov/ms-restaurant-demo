@@ -1,10 +1,11 @@
-package com.local.ms.restaurant.entity;
+package com.local.ms.restaurant.dao.entity;
 
-import com.local.ms.restaurant.enums.RestaurantStatus;
-import com.local.ms.restaurant.enums.State;
+import com.local.ms.restaurant.model.enums.RestaurantStatus;
+import com.local.ms.restaurant.model.enums.State;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -25,6 +26,7 @@ public class Restaurant {
     private LocalTime startTime;
     private LocalTime closeTime;
 
+    @OneToMany(mappedBy = "restaurant")
     private List<Table> tables;
 
     @Enumerated(STRING)

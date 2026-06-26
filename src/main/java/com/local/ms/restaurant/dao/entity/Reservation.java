@@ -1,9 +1,8 @@
-package com.local.ms.restaurant.entity;
+package com.local.ms.restaurant.dao.entity;
 
-import com.local.ms.restaurant.enums.ReservationStatus;
-import com.local.ms.restaurant.enums.State;
+import com.local.ms.restaurant.model.enums.ReservationStatus;
+import com.local.ms.restaurant.model.enums.State;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import org.hibernate.annotations.CreationTimestamp;

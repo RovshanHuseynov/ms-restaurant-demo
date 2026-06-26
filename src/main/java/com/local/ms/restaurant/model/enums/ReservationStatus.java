@@ -1,4 +1,4 @@
-package com.local.ms.restaurant.enums;
+package com.local.ms.restaurant.model.enums;
 
 public enum ReservationStatus {
     PENDING,    // new reservation

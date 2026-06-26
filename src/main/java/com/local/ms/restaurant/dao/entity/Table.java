@@ -1,9 +1,10 @@
-package com.local.ms.restaurant.entity;
+package com.local.ms.restaurant.dao.entity;
 
-import com.local.ms.restaurant.enums.State;
+import com.local.ms.restaurant.model.enums.State;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -18,7 +19,10 @@ public class Table {
     private String name;
     private String number;
     private int sitCount;
-    //private Restaurant restaurant;
+
+    @ManyToOne
+    // @JoinColumn(name = "restaurant_id")
+    private Restaurant restaurant;
 
     @Enumerated(STRING)
     private State state;
