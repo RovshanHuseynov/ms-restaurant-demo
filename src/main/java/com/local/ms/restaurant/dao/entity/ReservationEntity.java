@@ -5,10 +5,8 @@ import com.local.ms.restaurant.model.enums.State;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,12 +14,12 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
-import static jakarta.persistence.EnumType.*;
+import static jakarta.persistence.EnumType.STRING;
 
 @Getter
 @Setter
-@EqualsAndHashCode(of = "id")
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -30,14 +28,14 @@ public class ReservationEntity {
     @Id
     private String id;
 
-    @OneToOne
-    private UserEntity user;
+//    @OneToOne
+//    private UserEntity user;
 
-    @OneToOne
-    private TableEntity table;
+//    @OneToOne
+//    private TableEntity table;
 
-    @OneToOne
-    private RestaurantEntity restaurant;
+//    @OneToOne
+//    private RestaurantEntity restaurant;
 
     private LocalDateTime startTime;     // reservation start time
     private LocalDateTime endTime;       // reservation end time
@@ -51,4 +49,18 @@ public class ReservationEntity {
     private LocalDateTime createdAt;
     @UpdateTimestamp
     private LocalDateTime updatedAt;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ReservationEntity that = (ReservationEntity) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        //return Objects.hashCode(id);
+        return getClass().hashCode();
+    }
 }
