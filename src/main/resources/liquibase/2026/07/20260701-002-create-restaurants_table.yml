@@ -1,41 +1,31 @@
 databaseChangeLog:
   - changeSet:
-      id: create-restaurant_tables-table
+      id: 20260701-002-create-restaurants-table
       author: Rovshan Huseynov
       changes:
         - createTable:
-            tableName: restaurant_tables
-            remarks: Table to store information about restaurant_tables
+            tableName: restaurants
+            remarks: Table to store information about restaurants
             columns:
               - column:
                   name: id
                   type: varchar(16)
                   constraints:
                     primaryKey: true
-                    primaryKeyName: pk_restaurant_tables
+                    primaryKeyName: pk_restaurants
                     nullable: false
-              - column:
-                  name: restaurant_id
-                  type: varchar(16)
-                  constraints:
-                    nullable: false
-                    foreignKeyName: fk_restaurant_tables_restaurant
-                    referencedTableName: restaurants
-                    referencedColumnNames: id
               - column:
                   name: name
-                  type: varchar(64)
+                  type: varchar(128)
                   constraints:
                     nullable: false
               - column:
-                  name: number
-                  type: varchar(8)
-                  remarks: "Table number designation (e.g., '5', '12A')"
-              - column:
-                  name: capacity
-                  type: smallint
+                  name: status
+                  type: varchar(16)
+                  defaultValue: "OPEN"
                   constraints:
                     nullable: false
+                  remarks: enum with values OPEN, CLOSED, BUSY
               - column:
                   name: state
                   type: varchar(16)

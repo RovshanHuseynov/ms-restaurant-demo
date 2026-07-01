@@ -4,8 +4,10 @@ import com.local.ms.restaurant.model.enums.ReservationStatus;
 import com.local.ms.restaurant.model.enums.State;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,23 +31,22 @@ public class ReservationEntity {
     @Id
     private String id;
 
-    @OneToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "table_id", nullable = false)
     private TableEntity table;
 
-    @OneToOne
-    private RestaurantEntity restaurant;
-
-    @OneToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;
 
     private LocalDateTime startTime;
     private LocalDateTime endTime;
 
     @Enumerated(STRING)
-    private ReservationStatus status;
+    private ReservationStatus status = ReservationStatus.PENDING;
 
     @Enumerated(STRING)
-    private State state;
+    private State state = State.ACTIVE;
     private String stateReason;
 
     @CreationTimestamp
@@ -63,7 +64,6 @@ public class ReservationEntity {
 
     @Override
     public int hashCode() {
-        //return Objects.hashCode(id);
         return getClass().hashCode();
     }
 }

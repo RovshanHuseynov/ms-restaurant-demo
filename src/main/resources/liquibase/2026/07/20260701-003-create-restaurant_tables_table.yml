@@ -1,66 +1,48 @@
 databaseChangeLog:
   - changeSet:
-      id: create-reservations-table
+      id: 20260701-003-create-restaurant_tables-table
       author: Rovshan Huseynov
       changes:
         - createTable:
-            tableName: reservations
-            remarks: Table to store information about reservations
+            tableName: restaurant_tables
+            remarks: Table to store information about restaurant_tables
             columns:
               - column:
                   name: id
                   type: varchar(16)
                   constraints:
                     primaryKey: true
-                    primaryKeyName: pk_reservations
+                    primaryKeyName: pk_restaurant_tables
                     nullable: false
-              - column:
-                  name: table_id
-                  type: varchar(16)
-                  constraints:
-                    nullable: false
-                    foreignKeyName: fk_reservations_tables
-                    referencedTableName: tables
-                    referencedColumnNames: id
               - column:
                   name: restaurant_id
                   type: varchar(16)
                   constraints:
                     nullable: false
-                    foreignKeyName: fk_reservations_restaurants
+                    foreignKeyName: fk_restaurant_tables_restaurant
                     referencedTableName: restaurants
                     referencedColumnNames: id
               - column:
-                  name: user_id
-                  type: varchar(16)
-                  constraints:
-                    nullable: false
-                    foreignKeyName: fk_reservations_users
-                    referencedTableName: users
-                    referencedColumnNames: id
-              - column:
-                  name: start_time
-                  type: timestamp
+                  name: name
+                  type: varchar(64)
                   constraints:
                     nullable: false
               - column:
-                  name: end_time
-                  type: timestamp
-                  constraints:
-                    nullable: false
+                  name: number
+                  type: varchar(8)
+                  remarks: "Table number designation (e.g., '5', '12A')"
               - column:
-                  name: status
-                  type: varchar(16)
-                  defaultValue: "PENDING"
+                  name: capacity
+                  type: smallint
                   constraints:
                     nullable: false
-                  remarks: enum with values PENDING, CANCELLED, ARRIVED, NO_SHOW, REJECTED
+                  remarks: "How many people can sit in the table"
               - column:
                   name: state
                   type: varchar(16)
-                  defaultValue: "ACTIVE"
                   constraints:
                     nullable: false
+                  defaultValue: "ACTIVE"
                   remarks: enum with values ACTIVE, PAUSED, ARCHIVED, BLOCKED
               - column:
                   name: state_reason
