@@ -37,6 +37,8 @@ public class TableEntity {
 
     @Enumerated(STRING)
     private State state;
+    private String stateReason;
+
     @CreationTimestamp
     private LocalDateTime createdAt;
     @UpdateTimestamp

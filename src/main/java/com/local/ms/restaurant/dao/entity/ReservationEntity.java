@@ -5,6 +5,7 @@ import com.local.ms.restaurant.model.enums.State;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,23 +29,25 @@ public class ReservationEntity {
     @Id
     private String id;
 
-//    @OneToOne
-//    private UserEntity user;
+    @OneToOne
+    private TableEntity table;
 
-//    @OneToOne
-//    private TableEntity table;
+    @OneToOne
+    private RestaurantEntity restaurant;
 
-//    @OneToOne
-//    private RestaurantEntity restaurant;
+    @OneToOne
+    private UserEntity user;
 
-    private LocalDateTime startTime;     // reservation start time
-    private LocalDateTime endTime;       // reservation end time
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
 
     @Enumerated(STRING)
     private ReservationStatus status;
 
     @Enumerated(STRING)
     private State state;
+    private String stateReason;
+
     @CreationTimestamp
     private LocalDateTime createdAt;
     @UpdateTimestamp

@@ -1,0 +1,78 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-reservations-table
+      author: Rovshan Huseynov
+      changes:
+        - createTable:
+            tableName: reservations
+            remarks: Table to store information about reservations
+            columns:
+              - column:
+                  name: id
+                  type: varchar(16)
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_reservations
+                    nullable: false
+              - column:
+                  name: table_id
+                  type: varchar(16)
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_reservations_tables
+                    referencedTableName: tables
+                    referencedColumnNames: id
+              - column:
+                  name: restaurant_id
+                  type: varchar(16)
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_reservations_restaurants
+                    referencedTableName: restaurants
+                    referencedColumnNames: id
+              - column:
+                  name: user_id
+                  type: varchar(16)
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_reservations_users
+                    referencedTableName: users
+                    referencedColumnNames: id
+              - column:
+                  name: start_time
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: end_time
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(64)
+                  defaultValue: "PENDING"
+                  constraints:
+                    nullable: false
+                  remarks: enum with values PENDING, CANCELLED, ARRIVED, NO_SHOW, REJECTED
+              - column:
+                  name: state
+                  type: varchar(64)
+                  defaultValue: "ACTIVE"
+                  constraints:
+                    nullable: false
+                  remarks: enum with values ACTIVE, PAUSED, ARCHIVED, BLOCKED
+              - column:
+                  name: state_reason
+                  type: text
+                  constraints:
+                    nullable: true
+              - column:
+                  name: created_at
+                  type: datetime
+                  defaultValueComputed: "CURRENT_TIMESTAMP"
+                  remarks: insert_datetime of the row
+              - column:
+                  name: updated_at
+                  type: datetime
+                  remarks: last_update_datetime of the row
