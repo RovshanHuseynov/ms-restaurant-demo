@@ -1,31 +1,24 @@
 databaseChangeLog:
   - changeSet:
-      id: create-restaurants-table
+      id: create-users-table
       author: Rovshan Huseynov
       changes:
         - createTable:
-            tableName: restaurants
-            remarks: Table to store information about restaurants
+            tableName: users
+            remarks: Table to store information about users
             columns:
               - column:
                   name: id
                   type: varchar(16)
                   constraints:
                     primaryKey: true
-                    primaryKeyName: pk_restaurants
+                    primaryKeyName: pk_users_tables
                     nullable: false
               - column:
                   name: name
                   type: varchar(128)
                   constraints:
                     nullable: false
-              - column:
-                  name: status
-                  type: varchar(16)
-                  defaultValue: "OPEN"
-                  constraints:
-                    nullable: false
-                  remarks: enum with values OPEN, CLOSED, BUSY
               - column:
                   name: state
                   type: varchar(16)

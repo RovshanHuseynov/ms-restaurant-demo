@@ -50,14 +50,14 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: status
-                  type: varchar(64)
+                  type: varchar(16)
                   defaultValue: "PENDING"
                   constraints:
                     nullable: false
                   remarks: enum with values PENDING, CANCELLED, ARRIVED, NO_SHOW, REJECTED
               - column:
                   name: state
-                  type: varchar(64)
+                  type: varchar(16)
                   defaultValue: "ACTIVE"
                   constraints:
                     nullable: false
