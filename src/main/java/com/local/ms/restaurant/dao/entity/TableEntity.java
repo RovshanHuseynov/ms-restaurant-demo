@@ -4,6 +4,7 @@ import com.local.ms.restaurant.model.enums.State;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -23,17 +24,18 @@ import static jakarta.persistence.EnumType.STRING;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "tables")
+@Table(name = "restaurant_tables")
 public class TableEntity {
     @Id
     private String id;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "restaurant_id", nullable = false)
+    private RestaurantEntity restaurant;
+
     private String name;
     private String number;
-    private int sitCount;
-
-    @ManyToOne
-    // @JoinColumn(name = "restaurants_id")
-    private RestaurantEntity restaurant;
+    private short capacity;
 
     @Enumerated(STRING)
     private State state;

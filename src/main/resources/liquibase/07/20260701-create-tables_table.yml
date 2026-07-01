@@ -1,31 +1,41 @@
 databaseChangeLog:
   - changeSet:
-      id: create-restaurants-table
+      id: create-restaurant_tables-table
       author: Rovshan Huseynov
       changes:
         - createTable:
-            tableName: restaurants
-            remarks: Table to store information about restaurants
+            tableName: restaurant_tables
+            remarks: Table to store information about restaurant_tables
             columns:
               - column:
                   name: id
                   type: varchar(16)
                   constraints:
                     primaryKey: true
-                    primaryKeyName: pk_restaurants
+                    primaryKeyName: pk_restaurant_tables
                     nullable: false
+              - column:
+                  name: restaurant_id
+                  type: varchar(16)
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_restaurant_tables_restaurant
+                    referencedTableName: restaurants
+                    referencedColumnNames: id
               - column:
                   name: name
-                  type: varchar(128)
+                  type: varchar(64)
                   constraints:
                     nullable: false
               - column:
-                  name: status
-                  type: varchar(64)
-                  defaultValue: "OPEN"
+                  name: number
+                  type: varchar(8)
+                  remarks: "Table number designation (e.g., '5', '12A')"
+              - column:
+                  name: capacity
+                  type: smallint
                   constraints:
                     nullable: false
-                  remarks: enum with values OPEN, CLOSED, BUSY
               - column:
                   name: state
                   type: varchar(64)
@@ -40,10 +50,10 @@ databaseChangeLog:
                     nullable: true
               - column:
                   name: created_at
-                  type: datetime
+                  type: timestamp
                   defaultValueComputed: "CURRENT_TIMESTAMP"
                   remarks: insert_datetime of the row
               - column:
                   name: updated_at
-                  type: datetime
+                  type: timestamp
                   remarks: last_update_datetime of the row

@@ -69,10 +69,10 @@ databaseChangeLog:
                     nullable: true
               - column:
                   name: created_at
-                  type: datetime
+                  type: timestamp
                   defaultValueComputed: "CURRENT_TIMESTAMP"
                   remarks: insert_datetime of the row
               - column:
                   name: updated_at
-                  type: datetime
+                  type: timestamp
                   remarks: last_update_datetime of the row

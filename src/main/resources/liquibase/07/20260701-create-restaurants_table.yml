@@ -1,0 +1,49 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-restaurants-table
+      author: Rovshan Huseynov
+      changes:
+        - createTable:
+            tableName: restaurants
+            remarks: Table to store information about restaurants
+            columns:
+              - column:
+                  name: id
+                  type: varchar(16)
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_restaurants
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(128)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(64)
+                  defaultValue: "OPEN"
+                  constraints:
+                    nullable: false
+                  remarks: enum with values OPEN, CLOSED, BUSY
+              - column:
+                  name: state
+                  type: varchar(64)
+                  constraints:
+                    nullable: false
+                  defaultValue: "ACTIVE"
+                  remarks: enum with values ACTIVE, PAUSED, ARCHIVED, BLOCKED
+              - column:
+                  name: state_reason
+                  type: text
+                  constraints:
+                    nullable: true
+              - column:
+                  name: created_at
+                  type: timestamp
+                  defaultValueComputed: "CURRENT_TIMESTAMP"
+                  remarks: insert_datetime of the row
+              - column:
+                  name: updated_at
+                  type: timestamp
+                  remarks: last_update_datetime of the row
